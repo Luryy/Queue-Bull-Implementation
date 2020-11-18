@@ -1,4 +1,5 @@
 import Bull, { Job } from 'bull';
+import { setQueues } from 'bull-board';
 
 import jobs from '@src/jobs';
 import IQueueProvider from '../models/IQueueProvider';
@@ -28,6 +29,8 @@ class Queue implements IQueueProvider {
 
   public async process(): Promise<void> {
     return this.queues.forEach(queue => {
+      setQueues(queue.bull);
+
       queue.bull.process(queue.handle);
 
       queue.bull.on('failed', (job, err) => {
