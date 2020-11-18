@@ -1,10 +1,10 @@
 <h1 align="center">Bull Implementation :ox: </h1>
 
-_This project have the implementation of_ [Bull - queue system](!https://optimalbits.github.io/bull/) _and a interface to administrate your jobs_ - [Bull-Board](!https://github.com/vcapretz/bull-board)
+_This project have the implementation of_ [Bull - queue system](https://optimalbits.github.io/bull/) _and a interface to administrate your jobs_ - [Bull-Board](https://github.com/vcapretz/bull-board)
 
 ### Starting
 
-You should have [docker](!https://www.docker.com/) instaled
+You should have [docker](https://www.docker.com/) instaled
 
 
 - Create a redis container:
@@ -25,8 +25,8 @@ yarn start
 The aplicacation have two routes:
 
 
-- **```GET /admin/queues```** - To see the dashboard that administrate your jobs
-<br/>
+- **```GET /admin/queues```** - To see the dashboard that administrate your jobs.
+
 - **```POST /bull-test```** - To create a new job for test. The body must containt **```teste```** with any data, just to be passed to job.
 
 
