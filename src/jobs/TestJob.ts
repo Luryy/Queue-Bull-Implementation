@@ -18,7 +18,13 @@ class TestJob {
     done: DoneCallback,
   ): Promise<void> {
     console.log(job.data);
-    done();
+    job.progress(50);
+
+    setTimeout(() => {
+      console.log('done');
+      job.progress(100);
+      done();
+    }, 15 * 1000);
   }
 
   public getJob(): IJob {
