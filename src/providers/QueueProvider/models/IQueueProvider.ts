@@ -3,7 +3,7 @@ import { Job, Queue, JobOptions, DoneCallback } from 'bull';
 interface IJob {
   bull: Queue;
   name: string;
-  handle({ data }: { [key: string]: any }, done?: DoneCallback): Promise<void>;
+  handle(job: Job<{ [key: string]: any }>, done: DoneCallback): Promise<void>;
   options: JobOptions;
 }
 

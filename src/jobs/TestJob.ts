@@ -1,9 +1,9 @@
-import { DoneCallback, JobOptions } from 'bull';
+import { DoneCallback, Job, JobOptions } from 'bull';
 
 interface IJob {
   key: string;
   options: JobOptions;
-  handle({ data }: { [key: string]: any }, done?: DoneCallback): Promise<void>;
+  handle(job: Job<{ [key: string]: any }>, done: DoneCallback): Promise<void>;
 }
 
 class TestJob {
@@ -14,10 +14,10 @@ class TestJob {
   };
 
   private async handle(
-    { data }: { [key: string]: any },
+    job: Job<{ [key: string]: any }>,
     done: DoneCallback,
   ): Promise<void> {
-    console.log(data);
+    console.log(job.data);
     done();
   }
 
