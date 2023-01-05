@@ -10,6 +10,10 @@ class FakeQueueProvider implements IQueueProvider {
   public async process(): Promise<null> {
     return null;
   }
+
+  public uiRegister(): null {
+    return null;
+  }
 }
 
 export default FakeQueueProvider;

@@ -1,5 +1,10 @@
 import Bull, { Job } from 'bull';
 import { setQueues } from 'bull-board';
+import {
+  BullAdapter,
+  createBullBoard,
+  ExpressAdapter,
+} from '@bull-board/express';
 
 import jobs from '@src/jobs';
 import IQueueProvider from '../models/IQueueProvider';
@@ -29,8 +34,6 @@ class Queue implements IQueueProvider {
 
   public async process(): Promise<void> {
     return this.queues.forEach(queue => {
-      setQueues(queue.bull);
-
       queue.bull.process(queue.handle);
 
       queue.bull.on('failed', (job, err) => {
@@ -38,6 +41,30 @@ class Queue implements IQueueProvider {
         console.log(err);
       });
     });
+  }
+
+  public uiRegister(): {
+    bullBoardAdapter: ExpressAdapter;
+  } {
+    const serverAdapter = new ExpressAdapter();
+    serverAdapter.setBasePath('/admin/bull-board-queues');
+
+    const bullBoardQueues = this.queues.map(
+      queue => new BullAdapter(queue.bull),
+    );
+
+    createBullBoard({
+      queues: bullBoardQueues,
+      serverAdapter,
+    });
+
+    this.queues.forEach(queue => {
+      setQueues(queue.bull);
+    });
+
+    return {
+      bullBoardAdapter: serverAdapter,
+    };
   }
 }
 

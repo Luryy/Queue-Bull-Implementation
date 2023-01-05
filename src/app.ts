@@ -8,9 +8,10 @@ app.use(express.json());
 
 const queue = new Queue();
 
-queue.process();
+const { bullBoardAdapter } = queue.uiRegister();
 
 app.use('/admin/queues', UI);
+app.use('/admin/bull-board-queues', bullBoardAdapter.getRouter());
 app.post('/bull-test', async (request, response) => {
   const { teste } = request.body;
 

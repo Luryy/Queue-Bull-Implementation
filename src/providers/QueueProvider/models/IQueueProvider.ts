@@ -11,4 +11,5 @@ export default interface IQueueProvider {
   queues: IJob[];
   add(name: string, data: { [key: string]: any }): Promise<Job | null>;
   process(): Promise<void | null>;
+  uiRegister(): any;
 }
