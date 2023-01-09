@@ -2,6 +2,8 @@
 
 _This project have the implementation of_ [Bull - queue system](https://optimalbits.github.io/bull/) _and a interface to administrate your jobs_ - [Bull-Board](https://github.com/vcapretz/bull-board)
 
+> Deprecated description
+
 ### Starting
 
 You should have [docker](https://www.docker.com/) instaled
