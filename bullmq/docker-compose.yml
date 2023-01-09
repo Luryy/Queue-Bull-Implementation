@@ -1,0 +1,36 @@
+version: '3'
+services:
+  api:
+    depends_on:
+      - redis
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    network_mode: host
+    command: "yarn dev:server"
+    ports:
+      - 3333:3333
+    volumes:
+      - .:/app
+  jobs:
+    depends_on:
+      - redis
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    network_mode: host
+    command: "yarn dev:jobs"
+    volumes:
+      - .:/app
+    deploy:
+      mode: replicated
+      replicas: 3
+
+  redis:
+    container_name: redis-bullmq
+    image: redis:6
+    ports:
+      - 6379:6379
+    expose:
+      - 6379
+
