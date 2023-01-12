@@ -8,12 +8,10 @@ import {
 } from '@bull-board/express';
 import TestJob from './jobs/TestJob';
 
-
 const app = express();
 app.use(express.json());
 
 const queue = new Queue('main');
-
 
 bullBoardSetup();
 app.post('/bull-test', async (request, response) => {
@@ -25,7 +23,6 @@ app.post('/bull-test', async (request, response) => {
 });
 
 export default app;
-
 
 function bullBoardSetup() {
   const serverAdapter = new ExpressAdapter();

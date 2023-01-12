@@ -6,12 +6,12 @@ class TestJob {
     delay: 1000,
   } as const;
 
-  constructor(private job: Job) {};
+  constructor(private job: Job) {}
 
   public async handle(): Promise<void> {
     console.log(this.job.data);
     this.job.updateProgress(50);
-    this.job.log("Log");
+    this.job.log('Log');
 
     await setTimeout(15 * 1000);
 
