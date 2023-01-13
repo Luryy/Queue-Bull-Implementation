@@ -32,7 +32,6 @@ export class TestJob extends WorkerHost {
 
   @OnWorkerEvent('active')
   onActive() {
-    this.worker.concurrency = 3;
     console.log(' ------------ active');
   }
 }
