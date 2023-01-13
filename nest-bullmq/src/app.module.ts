@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { JobSchedulerModule } from './job-scheduler/job-scheduler.module';
+import { BullMainModule } from './bull-main/bull-main.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { JobSchedulerModule } from './job-scheduler/job-scheduler.module';
       },
     }),
     JobSchedulerModule,
+    BullMainModule,
   ],
   controllers: [AppController],
   providers: [AppService],
