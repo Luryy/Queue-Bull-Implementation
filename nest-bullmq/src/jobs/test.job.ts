@@ -23,4 +23,16 @@ export class TestJob extends WorkerHost {
     job.updateProgress(100);
     // console.log(job);
   }
+
+  @OnWorkerEvent('ready')
+  onReady() {
+    this.worker.concurrency = 3;
+    console.log('ready ------------');
+  }
+
+  @OnWorkerEvent('active')
+  onActive() {
+    this.worker.concurrency = 3;
+    console.log(' ------------ active');
+  }
 }
